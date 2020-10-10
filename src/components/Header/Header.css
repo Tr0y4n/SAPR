@@ -1,0 +1,9 @@
+.line {
+    width: 100%;
+    height: 70px;
+    background-color: rgb(22, 156, 235);
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+}

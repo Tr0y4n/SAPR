@@ -10,11 +10,11 @@ export default function Alt() {
         <>
             <Navbar bg="dark" variant="dark">
                 <Navbar.Brand href='#sapr'>САПР</Navbar.Brand>
-                <Nav className="links">
+                <div className="links">
                     <Nav.Link className='linkColor' href="#home">Препроцессор</Nav.Link>
                     <Nav.Link className='linkColor' href="#features">Процессор</Nav.Link>
                     <Nav.Link className='linkColor' href="#pricing">Постпроцессор</Nav.Link>
-                </Nav>
+                </div>
             </Navbar>
         </>
     )

@@ -1,10 +1,12 @@
 import React from 'react';
 import './App.css';
-import Header from './Header/Header'
+import Alt from './Header/Alt'
 
 function App() {
   return (
-    <Header />
+    <div>
+    <Alt />
+    </div>
   );
 }
 

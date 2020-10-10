@@ -7,7 +7,7 @@ export default function Header() {
         <header className='line'>
             <Button className="button" variant="contained" size="large" color="secondary">Препроцессор</Button>
             <Button className="button" variant="contained" size="large" color="secondary">Процессор</Button>
-            <Button className="button" variant="contained" size="large" color="primary">Постпроцессор</Button>
+            <Button className="button" variant="contained" size="large" color="secondary">Постпроцессор</Button>
         </header>
     )
 }

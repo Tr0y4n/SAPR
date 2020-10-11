@@ -2,8 +2,20 @@
     background-color: tomato;
 }
 
+.name {
+    font-size: 24px;
+    color: white;
+    background-color: rgb(59, 63, 65);
+    width: 49.5%;
+    text-align: center;
+    margin: 0;
+}
 .constTable {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+}
+
+.margin {
+    margin-top: 10px;
 }

@@ -1,18 +1,18 @@
 import React from 'react'
-import './ConstTable.css'
+import './LoadsTable.css'
 import Table from 'react-bootstrap/Table'
 
-export default class ConstTable extends React.Component {
+export default class LoadsTable extends React.Component {
     render() {
         return(
             <Table striped bordered hover variant="dark" className="tableStyle">
                 <thead>
                     <tr>
                         <th>Номер стержня</th>
-                        <th>Длина, L</th>
-                        <th>Площадь, A</th>
-                        <th>Модуль упругости, Е</th>
-                        <th>Допускаемое напряжение, S</th>
+                        <th>Длина L</th>
+                        <th>Площадь A</th>
+                        <th>Модуль упругости Е</th>
+                        <th>Допускаемое напряжение S</th>
                     </tr>
                 </thead>
                 <tbody>

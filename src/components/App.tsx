@@ -4,6 +4,7 @@ import './App.css'
 import Header from './Header/Header'
 import HomePage from './HomePage/HomePage'
 import ConstTable from './ConstTable/ConstTable'
+import LoadsTable from './LoadsTable/LoadsTable'
 
 function App() {
   return (
@@ -17,9 +18,13 @@ function App() {
           </Route>
 
           <Route path='/pre'>
+          <div className="constTable margin" >
+            <h1 className="name">Таблица стержней</h1>
+            <h1 className="name">Таблица нагрузок</h1>
+            </div>  
             <div className="constTable">
             <ConstTable />
-            <ConstTable />
+            <LoadsTable />
             </div>
           </Route>
 

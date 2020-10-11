@@ -1,8 +1,9 @@
-import React from 'react';
-import './App.css';
+import React from 'react'
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
+import './App.css'
 import Header from './Header/Header'
 import HomePage from './HomePage/HomePage'
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
+import ConstTable from './ConstTable/ConstTable'
 
 function App() {
   return (
@@ -10,13 +11,27 @@ function App() {
       <Router>
       <Header />
         <Switch>
-          <Route path='/pre'>
-            <h1>AAAA</h1>
+
+          <Route exact path='/'>
+          <HomePage />
           </Route>
-          <Route path='/pro'></Route>
-          <Route path='/post'></Route>
+
+          <Route path='/pre'>
+            <div className="constTable">
+            <ConstTable />
+            <ConstTable />
+            </div>
+          </Route>
+
+          <Route path='/pro'>
+          <h1>Processor</h1>
+          </Route>
+
+          <Route path='/post'>
+          <h1>Postprocessor</h1>
+          </Route>
+
         </Switch>
-        <HomePage />
       </Router>
     </div>
   );

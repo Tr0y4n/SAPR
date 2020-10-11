@@ -1,11 +1,23 @@
 import React from 'react';
 import './App.css';
-import Alt from './Header/Alt'
+import Header from './Header/Header'
+import HomePage from './HomePage/HomePage'
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 
 function App() {
   return (
     <div>
-    <Alt />
+      <Router>
+      <Header />
+        <Switch>
+          <Route path='/pre'>
+            <h1>AAAA</h1>
+          </Route>
+          <Route path='/pro'></Route>
+          <Route path='/post'></Route>
+        </Switch>
+        <HomePage />
+      </Router>
     </div>
   );
 }

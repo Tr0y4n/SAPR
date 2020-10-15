@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useState} from 'react'
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import './App.css'
 import Header from './Header/Header'
@@ -7,6 +7,8 @@ import ConstTable from './ConstTable/ConstTable'
 import LoadsTable from './LoadsTable/LoadsTable'
 
 function App() {
+  const [data, setData] = useState<Array<Object>>([])
+  const changeData = (data: Array<Object>) => {setData(data)}
   return (
     <div>
       <Router>
@@ -18,15 +20,11 @@ function App() {
           </Route>
 
           <Route path='/pre'>
-          <div className="constTable margin" >
-            <h1 className="name">Таблица стержней</h1>
-            <h1 className="name">Таблица нагрузок</h1>
-            </div>  
-            <div className="constTable">
-            <ConstTable />
-            <LoadsTable />
+            <div className="constTable margin">
+            <ConstTable dataRods={data}  setDataRods ={changeData} />
+            {/*<LoadsTable /> */}
             </div>
-          </Route>
+            </Route>
 
           <Route path='/pro'>
           <h1>Processor</h1>

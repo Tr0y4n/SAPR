@@ -1,25 +1,5 @@
-.tableStyle {
-    width: 49.5%;
+.tableRods{
+  width: 49.5%;
+  text-align: center;
+  background-color: black;
 }
-
-
-table td {
-    position: relative;
-    background-color: rgb(70, 72, 79);
-    color: white;
-  }
-  
-  table td input {
-    position: absolute;
-    display: block;
-    top:0;
-    left:0;
-    margin: 0;
-    height: 100%;
-    width: 100%;
-    border: none;
-    padding: 10px;
-    box-sizing: border-box;
-    background-color: rgb(70, 72, 79);
-    color: white;
-  }

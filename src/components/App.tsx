@@ -7,8 +7,11 @@ import ConstTable from './ConstTable/ConstTable'
 import LoadsTable from './LoadsTable/LoadsTable'
 
 function App() {
-  const [data, setData] = useState<Array<Object>>([])
-  const changeData = (data: Array<Object>) => {setData(data)}
+  const [dataRods, setDataRods] = useState<Array<Object>>([])
+  const changeDataRods = (data: Array<Object>) => {setDataRods(data)}
+  const [dataLoads, setDataLoads] = useState<Array<Object>>([])
+  const changeDataLoads = (data: Array<Object>) => {setDataLoads(data)}
+
   return (
     <div>
       <Router>
@@ -21,8 +24,8 @@ function App() {
 
           <Route path='/pre'>
             <div className="constTable margin">
-            <ConstTable dataRods={data}  setDataRods ={changeData} />
-            {/*<LoadsTable /> */}
+            <ConstTable data={dataRods}  setData={changeDataRods} />
+            <LoadsTable data={dataLoads} setData={changeDataLoads}/>
             </div>
             </Route>
 

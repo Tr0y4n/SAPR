@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import MaterialTable from 'material-table';
 import './LoadsTable.css';
-import Add from '@material-ui/icons';
 import { forwardRef } from 'react';
 
 import AddBox from '@material-ui/icons/AddBox';
@@ -62,50 +61,42 @@ const tableIcons: any = {
 	)),
 };
 
-const TableRods = () => {
+interface Data {
+	data: Array<Object>;
+	setData: (data: Array<Object>) => void;
+}
+
+const LoadsTable = (props: Data) => {
 	const [columns, setColumns] = useState<Array<Object>>([
 		{
-			title: 'Номер стержня',
+			title: 'Номер узла',
 			field: 'i',
 			type: 'numeric',
 			filtering: false,
 			align: 'center',
 		},
 		{ 
-      title: 'Длина', 
-      field: 'L', 
-      type: 'numeric', 
-      filtering: false 
-    },
-		{
-			title: 'Площадь сечения',
-			field: 'A',
-			type: 'numeric',
+      		title: 'Опора', 
+      		field: 'Z', 
+      		type: 'numeric', 
 			filtering: false,
-			align: 'center',
-		},
+			align: 'center', 
+    	},
 		{
-			title: 'Модуль упругости',
-			field: 'E',
-			type: 'numeric',
-			filtering: false,
-			align: 'center',
-		},
-		{
-			title: 'Допускаемое напряжение',
-			field: 'S',
+			title: 'Сосредоточенная нагрузка',
+			field: 'F',
 			type: 'numeric',
 			filtering: false,
 			align: 'center',
 		},
 	]);
-	const [data, setData] = useState<Array<Object>>([]);
+	
 	return (
-		<div className="tableRods">
+		<div className="tableNagr">
 			<MaterialTable
-				title="Таблица нагрузок"
+				title="Таблица напряжений"
 				columns={columns}
-				data={data}
+				data={props.data}
 				options={{
 					search: false,
 					sorting: false,
@@ -117,7 +108,7 @@ const TableRods = () => {
 					onRowAdd: (newData: any) =>
 						new Promise((resolve, reject) => {
 							setTimeout(() => {
-								setData([...data, newData]);
+								props.setData([...props.data, newData]);
 
 								resolve();
 							}, 1000);
@@ -125,10 +116,10 @@ const TableRods = () => {
 					onRowUpdate: (newData: any, oldData: any) =>
 						new Promise((resolve, reject) => {
 							setTimeout(() => {
-								const dataUpdate = [...data];
+								const dataUpdate = [...props.data];
 								const index = oldData.tableData.id;
 								dataUpdate[index] = newData;
-								setData([...dataUpdate]);
+								props.setData([...dataUpdate]);
 
 								resolve();
 							}, 1000);
@@ -136,10 +127,10 @@ const TableRods = () => {
 					onRowDelete: (oldData: any) =>
 						new Promise((resolve, reject) => {
 							setTimeout(() => {
-								const dataDelete = [...data];
+								const dataDelete = [...props.data];
 								const index = oldData.tableData.id;
 								dataDelete.splice(index, 1);
-								setData([...dataDelete]);
+								props.setData([...dataDelete]);
 
 								resolve();
 							}, 1000);
@@ -149,4 +140,4 @@ const TableRods = () => {
 		</div>
 	);
 };
-export default TableRods;
+export default LoadsTable;

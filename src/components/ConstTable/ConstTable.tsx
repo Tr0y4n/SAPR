@@ -40,8 +40,8 @@ const tableIcons: any = {
 };
 
 interface Data {
-	dataRods: Array<Object>;
-	setDataRods: (data: Array<Object>) => void;
+	data: Array<Object>;
+	setData: (data: Array<Object>) => void;
 }
 
 export default function ConstTable(props: Data) {
@@ -95,7 +95,7 @@ export default function ConstTable(props: Data) {
 			<MaterialTable
 				title="Таблица стержней"
 				columns={columns}
-				data={props.dataRods}
+				data={props.data}
 				options={{
 					search: false,
 					sorting: false,
@@ -107,7 +107,7 @@ export default function ConstTable(props: Data) {
 					onRowAdd: (newData: any) =>
 						new Promise((resolve, reject) => {
 							setTimeout(() => {
-								props.setDataRods([...props.dataRods, newData]);
+								props.setData([...props.data, newData]);
 
 								resolve();
 							}, 1000);
@@ -115,10 +115,10 @@ export default function ConstTable(props: Data) {
 					onRowUpdate: (newData: any, oldData: any) =>
 						new Promise((resolve, reject) => {
 							setTimeout(() => {
-								const dataUpdate = [...props.dataRods];
+								const dataUpdate = [...props.data];
 								const index = oldData.tableData.id;
 								dataUpdate[index] = newData;
-								props.setDataRods([...dataUpdate]);
+								props.setData([...dataUpdate]);
 
 								resolve();
 							}, 1000);
@@ -126,10 +126,10 @@ export default function ConstTable(props: Data) {
 					onRowDelete: (oldData: any) =>
 						new Promise((resolve, reject) => {
 							setTimeout(() => {
-								const dataDelete = [...props.dataRods];
+								const dataDelete = [...props.data];
 								const index = oldData.tableData.id;
 								dataDelete.splice(index, 1);
-								props.setDataRods([...dataDelete]);
+								props.setData([...dataDelete]);
 
 								resolve();
 							}, 1000);

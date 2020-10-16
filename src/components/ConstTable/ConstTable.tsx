@@ -62,12 +62,12 @@ export default function ConstTable(props: Data) {
 			filtering: false,
 			align: 'center',
 			validate: (rowData: any) => { 
-				if (rowData.i < 0) {
-					return("Введенное число не должно быть меньше нуля")}
+				if (rowData.i <= 0) {
+					return("Введенное число должно быть больше нуля")}
 				else if (rowData.i === undefined) {
 					return("Поле не должно быть пустым")
 				} else {
-					return ""
+					return true
 				}
 			}
 		},
@@ -83,7 +83,7 @@ export default function ConstTable(props: Data) {
 				else if (rowData.L === undefined) {
 					return("Поле не должно быть пустым")
 				}else {
-					return ""
+					return true
 				}
 			}
 		},
@@ -99,7 +99,7 @@ export default function ConstTable(props: Data) {
 				else if (rowData.A === undefined) {
 					return("Поле не должно быть пустым")
 				}else {
-					return ""
+					return true
 				}
 			}
 		},
@@ -115,7 +115,7 @@ export default function ConstTable(props: Data) {
 				else if (rowData.E === undefined) {
 					return("Поле не должно быть пустым")
 				}else {
-					return ""
+					return true
 				}
 			}
 		},
@@ -131,7 +131,7 @@ export default function ConstTable(props: Data) {
 				else if (rowData.S === undefined) {
 					return("Поле не должно быть пустым")
 				}else {
-					return ""
+					return true
 				}
 			}
 		},
@@ -147,7 +147,7 @@ export default function ConstTable(props: Data) {
 				else if (rowData.q === undefined) {
 					return("Поле не должно быть пустым")
 				}else {
-					return ""
+					return true
 				}
 			}
 		},
@@ -205,4 +205,3 @@ export default function ConstTable(props: Data) {
 		</div>
 	);
 };
-

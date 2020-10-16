@@ -39,9 +39,18 @@ const tableIcons: any = {
 	ViewColumn: forwardRef((props, ref: any) => <ViewColumn {...props} ref={ref} />),
 };
 
+interface RodsData {
+	i: number; 
+	L: number;  
+	A: number; 
+	E: number; 
+	S: number; 
+	q: number; 
+}
+
 interface Data {
-	data: Array<Object>;
-	setData: (data: Array<Object>) => void;
+	data: Array<RodsData>;
+	setData: (data: Array<RodsData>) => void;
 }
 
 export default function ConstTable(props: Data) {
@@ -52,13 +61,31 @@ export default function ConstTable(props: Data) {
 			type: 'numeric',
 			filtering: false,
 			align: 'center',
+			validate: (rowData: any) => { 
+				if (rowData.i < 0) {
+					return("Введенное число не должно быть меньше нуля")}
+				else if (rowData.i === undefined) {
+					return("Поле не должно быть пустым")
+				} else {
+					return ""
+				}
+			}
 		},
 		{ 
       		title: 'Длина', 
      		field: 'L', 
       		type: 'numeric', 
 	  		filtering: false,
-	  		align: 'center',
+			align: 'center',
+			validate: (rowData: any) => { 
+				if (rowData.L < 0) {
+					return("Введенное число не должно быть меньше нуля")}
+				else if (rowData.L === undefined) {
+					return("Поле не должно быть пустым")
+				}else {
+					return ""
+				}
+			}
 		},
 		{
 			title: 'Площадь сечения',
@@ -66,6 +93,15 @@ export default function ConstTable(props: Data) {
 			type: 'numeric',
 			filtering: false,
 			align: 'center',
+			validate: (rowData: any) => { 
+				if (rowData.A < 0) {
+					return("Введенное число не должно быть меньше нуля")}
+				else if (rowData.A === undefined) {
+					return("Поле не должно быть пустым")
+				}else {
+					return ""
+				}
+			}
 		},
 		{
 			title: 'Модуль упругости',
@@ -73,6 +109,15 @@ export default function ConstTable(props: Data) {
 			type: 'numeric',
 			filtering: false,
 			align: 'center',
+			validate: (rowData: any) => { 
+				if (rowData.E < 0) {
+					return("Введенное число не должно быть меньше нуля")}
+				else if (rowData.E === undefined) {
+					return("Поле не должно быть пустым")
+				}else {
+					return ""
+				}
+			}
 		},
 		{
 			title: 'Допускаемое напряжение',
@@ -80,6 +125,15 @@ export default function ConstTable(props: Data) {
 			type: 'numeric',
 			filtering: false,
 			align: 'center',
+			validate: (rowData: any) => { 
+				if (rowData.S < 0) {
+					return("Введенное число не должно быть меньше нуля")}
+				else if (rowData.S === undefined) {
+					return("Поле не должно быть пустым")
+				}else {
+					return ""
+				}
+			}
 		},
 		{
 			title: 'Распределенные нагрузки',
@@ -87,6 +141,15 @@ export default function ConstTable(props: Data) {
 			type: 'numeric',
 			filtering: false,
 			align: 'center',
+			validate: (rowData: any) => { 
+				if (rowData.q < 0) {
+					return("Введенное число не должно быть меньше нуля")}
+				else if (rowData.q === undefined) {
+					return("Поле не должно быть пустым")
+				}else {
+					return ""
+				}
+			}
 		},
 	]);
 	
@@ -115,6 +178,9 @@ export default function ConstTable(props: Data) {
 					onRowUpdate: (newData: any, oldData: any) =>
 						new Promise((resolve, reject) => {
 							setTimeout(() => {
+								if (newData <0){
+									reject();
+								}
 								const dataUpdate = [...props.data];
 								const index = oldData.tableData.id;
 								dataUpdate[index] = newData;

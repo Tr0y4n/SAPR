@@ -16,8 +16,8 @@ interface RodsData {
 }
 
 function App() {
-  const [dataRods, setDataRods] = useState<Array<Object>>([])
-  const changeDataRods = (data: Array<Object>) => {setDataRods(data)}
+  const [dataRods, setDataRods] = useState<Array<RodsData>>([])
+  const changeDataRods = (data: Array<RodsData>) => {setDataRods(data)}
   const [dataLoads, setDataLoads] = useState<Array<Object>>([])
   const changeDataLoads = (data: Array<Object>) => {setDataLoads(data)}
 
@@ -36,7 +36,6 @@ function App() {
             <ConstTable data={dataRods}  setData={changeDataRods} />
             <LoadsTable data={dataLoads} setData={changeDataLoads}/>
             </div>
-            {console.log(dataRods[0].i)}
             </Route>
 
           <Route path='/pro'>

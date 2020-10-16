@@ -6,6 +6,15 @@ import HomePage from './HomePage/HomePage'
 import ConstTable from './ConstTable/ConstTable'
 import LoadsTable from './LoadsTable/LoadsTable'
 
+interface RodsData {
+  i: number; 
+  L: number;  
+  A: number; 
+  E: number; 
+  S: number; 
+  q: number; 
+}
+
 function App() {
   const [dataRods, setDataRods] = useState<Array<Object>>([])
   const changeDataRods = (data: Array<Object>) => {setDataRods(data)}
@@ -27,6 +36,7 @@ function App() {
             <ConstTable data={dataRods}  setData={changeDataRods} />
             <LoadsTable data={dataLoads} setData={changeDataLoads}/>
             </div>
+            {console.log(dataRods[0].i)}
             </Route>
 
           <Route path='/pro'>

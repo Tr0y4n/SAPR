@@ -1,7 +1,8 @@
 .color {
     background-color: tomato;
+    height: 685px;
+    margin: 0px;
 }
-
 .name {
     font-size: 24px;
     color: white;

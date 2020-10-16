@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import MaterialTable from 'material-table';
-import './Alt.css';
+import './ConstTable.css';
 import { forwardRef } from 'react';
 
 import AddBox from '@material-ui/icons/AddBox';

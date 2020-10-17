@@ -54,6 +54,7 @@ interface Data {
 }
 
 export default function ConstTable(props: Data) {
+	const [counter, setCounter] = useState(1);
 	const [columns, setColumns] = useState<Array<Object>>([
 		{
 			title: 'Номер стержня',
@@ -61,15 +62,11 @@ export default function ConstTable(props: Data) {
 			type: 'numeric',
 			filtering: false,
 			align: 'center',
-			validate: (rowData: any) => { 
-				if (rowData.i <= 0) {
-					return("Введенное число должно быть больше нуля")}
-				else if (rowData.i === undefined) {
-					return("Поле не должно быть пустым")
-				} else {
-					return true
-				}
-			}
+			
+			editable: 'never',
+			render: () => {
+				return counter;
+			},
 		},
 		{ 
       		title: 'Длина', 
@@ -80,9 +77,9 @@ export default function ConstTable(props: Data) {
 			validate: (rowData: any) => { 
 				if (rowData.L < 0) {
 					return("Введенное число не должно быть меньше нуля")}
-				else if (rowData.L === undefined) {
+				else if (isNaN(rowData.L)) {
 					return("Поле не должно быть пустым")
-				}else {
+				} else {
 					return true
 				}
 			}
@@ -96,9 +93,9 @@ export default function ConstTable(props: Data) {
 			validate: (rowData: any) => { 
 				if (rowData.A < 0) {
 					return("Введенное число не должно быть меньше нуля")}
-				else if (rowData.A === undefined) {
+				else if (isNaN(rowData.A)) {
 					return("Поле не должно быть пустым")
-				}else {
+				} else {
 					return true
 				}
 			}
@@ -112,9 +109,9 @@ export default function ConstTable(props: Data) {
 			validate: (rowData: any) => { 
 				if (rowData.E < 0) {
 					return("Введенное число не должно быть меньше нуля")}
-				else if (rowData.E === undefined) {
+				else if (isNaN(rowData.E)) {
 					return("Поле не должно быть пустым")
-				}else {
+				} else {
 					return true
 				}
 			}
@@ -128,9 +125,9 @@ export default function ConstTable(props: Data) {
 			validate: (rowData: any) => { 
 				if (rowData.S < 0) {
 					return("Введенное число не должно быть меньше нуля")}
-				else if (rowData.S === undefined) {
+				else if (isNaN(rowData.S)) {
 					return("Поле не должно быть пустым")
-				}else {
+				} else {
 					return true
 				}
 			}
@@ -144,9 +141,9 @@ export default function ConstTable(props: Data) {
 			validate: (rowData: any) => { 
 				if (rowData.q < 0) {
 					return("Введенное число не должно быть меньше нуля")}
-				else if (rowData.q === undefined) {
+				else if (isNaN(rowData.q)) {
 					return("Поле не должно быть пустым")
-				}else {
+				} else {
 					return true
 				}
 			}
@@ -167,14 +164,15 @@ export default function ConstTable(props: Data) {
 				}}
 				icons={tableIcons}
 				editable={{
-					onRowAdd: (newData: any) =>
-						new Promise((resolve, reject) => {
-							setTimeout(() => {
+					onRowAdd: (newData: any) =>{
+							setCounter(counter + 1);
+							return new Promise((resolve, reject) => {
+								setTimeout(() => {
 								props.setData([...props.data, newData]);
 
 								resolve();
 							}, 1000);
-						}),
+					})},
 					onRowUpdate: (newData: any, oldData: any) =>
 						new Promise((resolve, reject) => {
 							setTimeout(() => {

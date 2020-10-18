@@ -62,11 +62,15 @@ export default function ConstTable(props: Data) {
 			type: 'numeric',
 			filtering: false,
 			align: 'center',
-			
-			editable: 'never',
-			render: () => {
-				return counter;
-			},
+			validate: (rowData: any) => { 
+				if (rowData.i < 0) {
+					return("Введенное число не должно быть меньше нуля")}
+				else if (isNaN(rowData.i)) {
+					return("Поле не должно быть пустым")
+				} else {
+					return true
+				}
+			}
 		},
 		{ 
       		title: 'Длина', 
@@ -82,7 +86,7 @@ export default function ConstTable(props: Data) {
 				} else {
 					return true
 				}
-			}
+			},
 		},
 		{
 			title: 'Площадь сечения',
@@ -138,15 +142,6 @@ export default function ConstTable(props: Data) {
 			type: 'numeric',
 			filtering: false,
 			align: 'center',
-			validate: (rowData: any) => { 
-				if (rowData.q < 0) {
-					return("Введенное число не должно быть меньше нуля")}
-				else if (isNaN(rowData.q)) {
-					return("Поле не должно быть пустым")
-				} else {
-					return true
-				}
-			}
 		},
 	]);
 	
@@ -161,18 +156,25 @@ export default function ConstTable(props: Data) {
 					sorting: false,
 					draggable: false,
 					paging: false,
-				}}
+					headerStyle: {
+						backgroundColor: '#21262e',
+						color: '#FFF',
+					},
+					rowStyle: {
+						backgroundColor: '#9196a1',
+						color: '#FFF',
+					},
+			}}
 				icons={tableIcons}
 				editable={{
-					onRowAdd: (newData: any) =>{
-							setCounter(counter + 1);
-							return new Promise((resolve, reject) => {
+					onRowAdd: (newData: any) =>
+							new Promise((resolve, reject) => {
 								setTimeout(() => {
 								props.setData([...props.data, newData]);
 
 								resolve();
 							}, 1000);
-					})},
+					}),
 					onRowUpdate: (newData: any, oldData: any) =>
 						new Promise((resolve, reject) => {
 							setTimeout(() => {

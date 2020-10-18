@@ -5,6 +5,7 @@ import Header from './Header/Header'
 import HomePage from './HomePage/HomePage'
 import ConstTable from './ConstTable/ConstTable'
 import LoadsTable from './LoadsTable/LoadsTable'
+import Konva from './Konva/Konva'
 
 interface RodsData {
   i: number; 
@@ -28,22 +29,25 @@ function App() {
         <Switch>
 
           <Route exact path='/'>
-          <HomePage />
+            <HomePage />
           </Route>
 
           <Route path='/pre'>
-            <div className="constTable margin">
-            <ConstTable data={dataRods}  setData={changeDataRods} />
-            <LoadsTable data={dataLoads} setData={changeDataLoads}/>
+            <div className="Preprocessor">
+              <div className="tables margin">
+                <ConstTable data={dataRods}  setData={changeDataRods} />
+                <LoadsTable data={dataLoads} setData={changeDataLoads}/>
+              </div>
+              <Konva data={dataRods}/>
             </div>
-            </Route>
+          </Route>
 
           <Route path='/pro'>
-          <h1>Processor</h1>
+            <h1>Processor</h1>
           </Route>
 
           <Route path='/post'>
-          <h1>Postprocessor</h1>
+            <h1>Postprocessor</h1>
           </Route>
 
         </Switch>

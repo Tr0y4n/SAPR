@@ -11,7 +11,7 @@
     text-align: center;
     margin: 0;
 }
-.constTable {
+.tables {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -19,4 +19,11 @@
 
 .margin {
     margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.Preprocessor {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }

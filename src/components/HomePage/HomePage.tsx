@@ -1,10 +1,11 @@
 import React from 'react'
 import logo from './anime.jpg'
+import './HomePage.css'
 
 export default function HomePage() {
     return(
         <div className="back">
-           <img src={logo} width="1536" height="695" alt="HomePage" />
+           <h2>aaaaaaaaa</h2>
         </div>
     )
 } 

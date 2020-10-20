@@ -19,9 +19,9 @@ export default function Konva(props: Data) {
     return (
     <div className="Canvas">
     {props.data ? props.data.map((info) => (
-      <Stage width={info.L} height={info.A * 5}>
+      <Stage width={info.L} height={info.A}>
         <Layer>
-          <Rect x={0} y={70} width={info.L} height={info.A} stroke="black" />
+          <Rect x={0} y={0} width={info.L} height={info.A} stroke="black" />
         </Layer>
       </Stage>
     ))

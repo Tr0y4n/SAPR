@@ -3,14 +3,7 @@
     height: 685px;
     margin: 0px;
 }
-.name {
-    font-size: 24px;
-    color: white;
-    background-color: rgb(59, 63, 65);
-    width: 49.5%;
-    text-align: center;
-    margin: 0;
-}
+
 .tables {
     display: flex;
     flex-direction: row;
@@ -25,5 +18,4 @@
 .Preprocessor {
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
 }

@@ -6,6 +6,8 @@ import HomePage from './HomePage/HomePage'
 import ConstTable from './ConstTable/ConstTable'
 import LoadsTable from './LoadsTable/LoadsTable'
 import Konva from './Konva/Konva'
+import NewTable from './NewTable/NewTable'
+import MyTable from './MyTable/MyTable'
 
 interface RodsData {
   i: number; 
@@ -37,8 +39,10 @@ function App() {
               <div className="tables margin">
                 <ConstTable data={dataRods}  setData={changeDataRods} />
                 <LoadsTable data={dataLoads} setData={changeDataLoads}/>
+                
               </div>
-              <Konva data={dataRods}/>
+              
+              <NewTable />
             </div>
           </Route>
 

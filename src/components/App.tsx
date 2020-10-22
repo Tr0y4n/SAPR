@@ -3,11 +3,9 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import './App.css'
 import Header from './Header/Header'
 import HomePage from './HomePage/HomePage'
-import ConstTable from './ConstTable/ConstTable'
-import LoadsTable from './LoadsTable/LoadsTable'
 import Konva from './Konva/Konva'
-import NewTable from './NewTable/NewTable'
-import MyTable from './MyTable/MyTable'
+import RodsTable from './RodsTable/RodsTable'
+import LoadsTable from './LoadsTable/LoadsTable'
 
 interface RodsData {
   i: number; 
@@ -16,6 +14,10 @@ interface RodsData {
   E: number; 
   S: number; 
   q: number; 
+}
+
+interface Data {
+	data: Array<RodsData>;
 }
 
 function App() {
@@ -37,12 +39,10 @@ function App() {
           <Route path='/pre'>
             <div className="Preprocessor">
               <div className="tables margin">
-                <ConstTable data={dataRods}  setData={changeDataRods} />
+                <RodsTable data={dataRods}  setData={changeDataRods}/>
                 <LoadsTable data={dataLoads} setData={changeDataLoads}/>
-                
               </div>
-              
-              <NewTable />
+              <Konva data={dataRods} />
             </div>
           </Route>
 

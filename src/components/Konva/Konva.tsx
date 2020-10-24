@@ -1,4 +1,5 @@
-import React from 'react'
+import { info } from 'console';
+import React, { useState } from 'react'
 import {Stage, Layer, Rect} from 'react-konva'
 import "./Konva.css"
 
@@ -16,7 +17,8 @@ interface Data {
 }
 
 export default function Konva(props: Data) {
-    return (
+
+  return (
     <div className="Canvas">
     {props.data ? props.data.map((info) => (
       <Stage width={info.L} height={info.A}>
@@ -24,8 +26,8 @@ export default function Konva(props: Data) {
           <Rect x={0} y={0} width={info.L} height={info.A} stroke="black" />
         </Layer>
       </Stage>
-    ))
+      ))
     : null}
-    </div>
+    </div> 
     )
 }

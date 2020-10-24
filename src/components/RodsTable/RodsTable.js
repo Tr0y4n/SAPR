@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import "./RodsTable.css";
 import MaterialTable from "material-table";
-import { Input } from "@material-ui/core";
 import AddIcon from "@material-ui/icons/Add";
 import EditIcon from "@material-ui/icons/Edit";
 import DeleteIcon from "@material-ui/icons/Delete";

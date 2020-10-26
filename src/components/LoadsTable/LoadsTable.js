@@ -1,14 +1,14 @@
 import React, { useState } from "react";
 import "./LoadsTable.css";
 import MaterialTable from "material-table";
-import { Input } from "@material-ui/core";
 import AddIcon from "@material-ui/icons/Add";
 import EditIcon from "@material-ui/icons/Edit";
 import DeleteIcon from "@material-ui/icons/Delete";
 import CheckIcon from "@material-ui/icons/Check";
 import SearchIcon from "@material-ui/icons/Search";
+import { Cancel } from "@material-ui/icons";
 
-export default function LastHope(props) {
+export default function LoadsTable(props) {
   return (
       <div className="TableLoads">
         <MaterialTable
@@ -32,10 +32,9 @@ export default function LastHope(props) {
             { 
               title: 'Опора', 
               field: 'Z', 
-              type: 'numeric', 
+              type: 'boolean', 
               filtering: false,
               align: 'center',
-              validate: (rowData) => (rowData.Z === 0 || rowData.Z === 1) ? true : "Значение должно быть 0 или 1"
             },
             { 
             title: 'Сосредоточенная нагрузка',
@@ -55,7 +54,8 @@ export default function LastHope(props) {
             Clear: props => <DeleteIcon />,
             Check: props => <CheckIcon />,
             Search: props => <SearchIcon />,
-            ResetSearch: props => <DeleteIcon />
+            ResetSearch: props => <DeleteIcon />,
+            Cancel: props => <Cancel />
           }}
 
           editable={{

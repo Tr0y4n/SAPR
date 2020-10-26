@@ -1,6 +1,5 @@
-import { info } from 'console';
 import React, { useState } from 'react'
-import {Stage, Layer, Rect} from 'react-konva'
+import {Stage, Layer, Rect, Arrow} from 'react-konva'
 import "./Konva.css"
 
 interface RodsData {
@@ -12,16 +11,23 @@ interface RodsData {
 	q: number; 
 }
 
+interface LoadsData {
+  n: number;
+  F: number;
+  Z: number;
+}
+
 interface Data {
-	data: Array<RodsData>;
+  dataRods: Array<RodsData>;
+  dataLoads: Array<LoadsData>;
 }
 
 export default function Konva(props: Data) {
 
   return (
     <div className="Canvas">
-    {props.data ? props.data.map((info) => (
-      <Stage width={info.L} height={info.A}>
+    {props.dataRods ? props.dataRods.map((info) => (
+      <Stage width={info.L} height={info.A + 40}>
         <Layer>
           <Rect x={0} y={0} width={info.L} height={info.A} stroke="black" />
         </Layer>

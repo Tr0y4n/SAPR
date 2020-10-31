@@ -12,9 +12,9 @@ export default function Header() {
             <Navbar bg="dark" variant="dark">
                 <Navbar.Brand href="https://sites.google.com/site/vladchekanin/discipliny/komputernaa-mehanika-5-semestr">САПР</Navbar.Brand>
                 <div className="links">
-                    <Nav.Link disabled={location.pathname === '/pre'} className='linkColor' href="/pre">Препроцессор</Nav.Link>
-                    <Nav.Link disabled={location.pathname === '/pro'} className='linkColor' href="/pro">Процессор</Nav.Link>
-                    <Nav.Link disabled={location.pathname === '/post'} className='linkColor' href="/post">Постпроцессор</Nav.Link>
+                    <Nav.Link disabled={location.pathname === '/preprocessor'} className='linkColor' href="/preprocessor">Препроцессор</Nav.Link>
+                    <Nav.Link disabled={location.pathname === '/processor'} className='linkColor' href="/processor">Процессор</Nav.Link>
+                    <Nav.Link disabled={location.pathname === '/postprocessor'} className='linkColor' href="/postprocessor">Постпроцессор</Nav.Link>
                 </div>
             </Navbar>
         </>

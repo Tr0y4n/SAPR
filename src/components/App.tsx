@@ -24,11 +24,11 @@ interface LoadsData {
 }
 
 function App() {
-  const [dataRods, setDataRods] = useState<Array<RodsData>>([{i: 1, L: 300, A: 100, E: 100, S: 1, q: 1},
-    {i: 2, L: 200, A: 50, E: 100, S: 1, q: 1},
-    {i: 3, L: 400, A: 200, E: 100, S: 1, q: 1}])
+  const [dataRods, setDataRods] = useState<Array<RodsData>>([{i: 1, L: 400, A: 50, E: 1, S: 1, q: 1},
+    {i: 2, L: 200, A: 100, E: 1, S: 1, q: 0},
+    {i: 3, L: 300, A: 150, E: 1, S: 1, q: 0}, {i: 4, L: 100, A: 50, E: 1, S: 1, q: 0},])
   const changeDataRods = (data: Array<RodsData>) => {setDataRods(data)}
-  const [dataLoads, setDataLoads] = useState<Array<LoadsData>>([])
+  const [dataLoads, setDataLoads] = useState<Array<LoadsData>>([{n: 1, Z: 1, F: 0}])
   const changeDataLoads = (data: Array<LoadsData>) => {setDataLoads(data)}
 
   let errorSource: string = '';
@@ -56,14 +56,14 @@ let areSupportsOk: boolean = true;
 for (let j: number = 0; j < dataLoads.length; j++) {
   if (!isNaN(dataLoads[j].Z) && dataLoads[j].n !== 1) {
      if (dataLoads[j].n !== (dataRods.length + 1)) {
-    console.log("dataLoads[j].n = " + dataLoads[j].n)
+    console.log("dataLoads[j].n = " + dataLoads[j].n);
     areSupportsOk = false;
     errorSource = "опор";
    }
   }
  }
 
-
+ console.log(dataLoads[dataLoads.length - 1].Z);
   return (
     <div>
       <Router>
@@ -74,7 +74,7 @@ for (let j: number = 0; j < dataLoads.length; j++) {
             <HomePage />
           </Route>
 
-          <Route path='/pre'>
+          <Route path='/preprocessor'>
             <div className="Preprocessor">
               <div className="tables margin">
                 <RodsTable data={dataRods}  setData={changeDataRods}/>
@@ -90,11 +90,11 @@ for (let j: number = 0; j < dataLoads.length; j++) {
             </div>
           </Route>
 
-          <Route path='/pro'>
+          <Route path='/processor'>
             <h1>Processor</h1>
           </Route>
 
-          <Route path='/post'>
+          <Route path='/postprocessor'>
             <h1>Postprocessor</h1>
           </Route>
 

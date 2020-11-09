@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import "./LoadsTable.css";
 import MaterialTable from "material-table";
 import AddIcon from "@material-ui/icons/Add";

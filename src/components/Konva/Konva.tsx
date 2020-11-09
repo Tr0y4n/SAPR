@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import {Stage, Layer, Rect, Arrow, Line} from 'react-konva'
 import "./Konva.css"
 
@@ -60,12 +60,12 @@ export default function Konva(props: Data) {
 
           if (info.q > 0) {
             for (let i: number = startPoint + 1; i < startPoint + 1 + info.L; i += 50){
-            const arrow = <Arrow points={[i - info.L, windowHeight / 2, i - info.L + 20, windowHeight / 2, i - info.L + 40, windowHeight / 2]} strokeWidth={5} stroke="red" fill="red" />
+            const arrow = <Arrow points={[i - info.L, windowHeight / 2, i - info.L + 20, windowHeight / 2, i - info.L + 40, windowHeight / 2]} strokeWidth={5} stroke="blue" fill="blue" />
             arrows.push(arrow);
             }
           } else if (info.q < 0) {
             for (let i: number = startPoint + info.L; i > startPoint; i -= 50) {
-              const arrow = <Arrow points={[i - info.L, windowHeight / 2, i - info.L - 20, windowHeight / 2, i - info.L - 40, windowHeight / 2]} strokeWidth={5} stroke="red" fill="red" />
+              const arrow = <Arrow points={[i - info.L, windowHeight / 2, i - info.L - 20, windowHeight / 2, i - info.L - 40, windowHeight / 2]} strokeWidth={5} stroke="blue" fill="blue" />
               arrows.push(arrow);
           }}
           return [rect, ...arrows];
@@ -74,10 +74,10 @@ export default function Konva(props: Data) {
         {props.dataLoads ? props.dataLoads.map((val) => {
            if (val.F > 0) {
             return (
-                <Arrow points={[coord[val.n-1].x, coord[val.n-1].y, coord[val.n-1].x + 40, coord[val.n-1].y]} strokeWidth={9} opacity={0.7} fill="blue" stroke="blue" />
+                <Arrow points={[coord[val.n-1].x, coord[val.n-1].y, coord[val.n-1].x + 40, coord[val.n-1].y]} strokeWidth={9} opacity={0.7} fill="red" stroke="red" />
             )} else if (val.F < 0) {
             return (
-                <Arrow points={[coord[val.n-1].x, coord[val.n-1].y, coord[val.n-1].x - 40, coord[val.n-1].y,]} strokeWidth={9} opacity={0.7} fill="blue" stroke="blue" />
+                <Arrow points={[coord[val.n-1].x, coord[val.n-1].y, coord[val.n-1].x - 40, coord[val.n-1].y,]} strokeWidth={9} opacity={0.7} fill="red" stroke="red" />
             )}
             }) : null}
 

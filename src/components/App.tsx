@@ -7,6 +7,7 @@ import HomePage from './HomePage/HomePage'
 import Konva from './Konva/Konva'
 import RodsTable from './RodsTable/RodsTable'
 import LoadsTable from './LoadsTable/LoadsTable'
+import FileUpload from '../fileupload'
 
 interface RodsData {
   i: number; 
@@ -24,11 +25,10 @@ interface LoadsData {
 }
 
 function App() {
-  const [dataRods, setDataRods] = useState<Array<RodsData>>([{i: 1, L: 400, A: 50, E: 1, S: 1, q: 1},
-    {i: 2, L: 200, A: 100, E: 1, S: 1, q: 0},
-    {i: 3, L: 300, A: 150, E: 1, S: 1, q: 0}, {i: 4, L: 100, A: 50, E: 1, S: 1, q: 0},])
+
+  const [dataRods, setDataRods] = useState<Array<RodsData>>([])
   const changeDataRods = (data: Array<RodsData>) => {setDataRods(data)}
-  const [dataLoads, setDataLoads] = useState<Array<LoadsData>>([{n: 1, Z: 1, F: 0}])
+  const [dataLoads, setDataLoads] = useState<Array<LoadsData>>([])
   const changeDataLoads = (data: Array<LoadsData>) => {setDataLoads(data)}
 
   let errorSource: string = '';
@@ -63,7 +63,6 @@ for (let j: number = 0; j < dataLoads.length; j++) {
   }
  }
 
- console.log(dataLoads[dataLoads.length - 1].Z);
   return (
     <div>
       <Router>
@@ -75,19 +74,9 @@ for (let j: number = 0; j < dataLoads.length; j++) {
           </Route>
 
           <Route path='/preprocessor'>
-            <div className="Preprocessor">
-              <div className="tables margin">
-                <RodsTable data={dataRods}  setData={changeDataRods}/>
-                <LoadsTable data={dataLoads} setData={changeDataLoads}/>
-              </div>
-              {(areRodsOk && areLoadsOk && areSupportsOk)?
-              <Konva dataRods={dataRods} dataLoads={dataLoads} />
-              : (
-                <Alert variant='danger'>
-                  <Alert.Heading>Ошибка!</Alert.Heading>
-                  <p>Неправильная нумерация {errorSource}!</p>
-                </Alert>)}
-            </div>
+          <div className="App">
+      <FileUpload />
+    </div >
           </Route>
 
           <Route path='/processor'>

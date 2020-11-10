@@ -15,6 +15,7 @@ export default function Header() {
                     <Nav.Link disabled={location.pathname === '/preprocessor'} className='linkColor' href="/preprocessor">Препроцессор</Nav.Link>
                     <Nav.Link disabled={location.pathname === '/processor'} className='linkColor' href="/processor">Процессор</Nav.Link>
                     <Nav.Link disabled={location.pathname === '/postprocessor'} className='linkColor' href="/postprocessor">Постпроцессор</Nav.Link>
+                    <Nav.Link disabled={location.pathname === '/uploading'} className='linkColor' href="/uploading">Загрузить</Nav.Link>
                 </div>
             </Navbar>
         </>

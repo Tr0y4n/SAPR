@@ -4,7 +4,7 @@ import axios from 'axios';
 function FileUpload() {
     const [file, setFile] = useState(''); // storing the uploaded file    
     // storing the recived file from backend
-    const [info, getFile] = useState({ name: "", path: "" });    
+    const [info, getFile] = useState({content: ""});    
     const [progress, setProgess] = useState(0); // progess bar
     const el = useRef(); // accesing input element
 
@@ -24,15 +24,17 @@ function FileUpload() {
                 setProgess(progress);
             }
         }).then(res => {
-            console.log(res);
-            getFile({ name: res.info.name,
-                     path: 'http://localhost:4500' + res.info.path
+            console.log("What is it? ", res);
+            getFile({ 
+                     content: res.data.state
                    })
         }).catch(err => console.log(err))}
 
         if (info) {
             console.log("File info: ", info);
         }
+        console.log("KAIF ", info.content);
+
     return (
         <div>
             <div className="file-upload">
@@ -43,9 +45,6 @@ function FileUpload() {
                 <button onClick={uploadFile} className="upbutton">                   
                 Upload
                 </button>
-            <hr />
-            {/* displaying received image*/}
-            {info.path && <img src={info.path} alt={info.name} />}
             </div>
         </div>
     );

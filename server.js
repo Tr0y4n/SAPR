@@ -41,7 +41,7 @@ app.post('/upload', (req, res) => {
 
     const data = buf.toString();
     console.log("What is it server", data);
-    res.send({state: data});
+    res.send({state: data, name: myFile.name});
     fs.unlink(`${__dirname}/public/${myFile.name}`, (err) => {
       if(err){
         console.log(err);

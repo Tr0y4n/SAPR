@@ -8,6 +8,7 @@ import CheckIcon from "@material-ui/icons/Check";
 import SearchIcon from "@material-ui/icons/Search";
 
 export default function RodsTable(props) {
+  
   return (
       <div className="TableRods">
         <MaterialTable
@@ -92,6 +93,7 @@ export default function RodsTable(props) {
             },
           ]}
 
+          
           data={props.data}
           title="Стержни"
           icons={{

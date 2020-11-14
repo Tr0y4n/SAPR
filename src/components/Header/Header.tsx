@@ -9,13 +9,16 @@ export default function Header() {
     let location = useLocation();
     return (
         <>
-            <Navbar bg="dark" variant="dark">
+            <Navbar bg="dark" variant="dark" >
                 <Navbar.Brand href="https://sites.google.com/site/vladchekanin/discipliny/komputernaa-mehanika-5-semestr">САПР</Navbar.Brand>
                 <div className="links">
                     <Nav.Link disabled={location.pathname === '/preprocessor'} className='linkColor' href="/preprocessor">Препроцессор</Nav.Link>
                     <Nav.Link disabled={location.pathname === '/processor'} className='linkColor' href="/processor">Процессор</Nav.Link>
-                    <Nav.Link disabled={location.pathname === '/postprocessor'} className='linkColor' href="/postprocessor">Постпроцессор</Nav.Link>
-                    <Nav.Link disabled={location.pathname === '/uploading'} className='linkColor' href="/uploading">Загрузить</Nav.Link>
+                    <Nav.Link disabled={location.pathname === '/postprocessor'} className='linkColor' href="/postprocessor">Постпроцессор</Nav.Link>  
+                </div>
+                <div className="load">
+                <Nav.Link disabled={location.pathname === '/uploading'} className='linkColor' href="/uploading">Загрузить</Nav.Link>
+                <Nav.Link disabled={location.pathname === '/downloading'} className='linkColor' href="/downloading">Скачать</Nav.Link>
                 </div>
             </Navbar>
         </>

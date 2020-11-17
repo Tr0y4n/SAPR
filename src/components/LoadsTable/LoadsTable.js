@@ -32,9 +32,10 @@ export default function LoadsTable(props) {
             { 
               title: 'Опора', 
               field: 'Z', 
-              type: 'boolean', 
+              type: 'numeric', 
               filtering: false,
               align: 'center',
+              validate: (rowData) => (rowData.Z === 0 || rowData.Z === 1) ? true : "Значение должно быть 0 или 1"
             },
             { 
             title: 'Сосредоточенная нагрузка',
@@ -61,35 +62,29 @@ export default function LoadsTable(props) {
           editable={{
             onRowAdd: newData => {
               return new Promise((resolve, reject) => {
-                setTimeout(() => {
                   props.setData([...props.data, newData]);
   
                   resolve();
-                }, 1000);
               })},
 
             onRowUpdate: (newData, oldData) =>
               new Promise((resolve, reject) => {
-                setTimeout(() => {
                   const dataUpdate = [...props.data];
                   const index = oldData.tableData.id;
                   dataUpdate[index] = newData;
                   props.setData([...dataUpdate]);
 
                   resolve();
-                }, 1000);
               }),
 
             onRowDelete: oldData =>
               new Promise((resolve, reject) => {
-                setTimeout(() => {
                   const dataDelete = [...props.data];
                   const index = oldData.tableData.id;
                   dataDelete.splice(index, 1);
                   props.setData([...dataDelete]);
 
                   resolve();
-                }, 1000);
               })
           }}
         />

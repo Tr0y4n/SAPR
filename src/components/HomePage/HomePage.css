@@ -1,13 +1,14 @@
 .back {
-  background: url(try.jpg);
+  background: url(it2.jpg);
   background-size: cover;
   width: 1536px;
-  height: 695px;
+  height: 662px;
   position: relative;
 }
 
 .bottom-left {
   position: absolute;
-  bottom: 8px;
-  left: 16px;
+  top: 48px;
+  right: 30px;
+  color: aliceblue;
 }

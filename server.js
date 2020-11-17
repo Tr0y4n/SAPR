@@ -21,6 +21,10 @@ app.use(
 );
 app.use(bodyParser.urlencoded({ extended: true }));
 
+app.use('/download', function(req, res){ 
+    res.download('Hello.txt'); 
+});
+
 // file upload api
 app.post('/upload', (req, res) => {
     if (!req.files) {
@@ -40,7 +44,6 @@ app.post('/upload', (req, res) => {
         });
 
     const data = buf.toString();
-    console.log("What is it server", data);
     res.send({state: data, name: myFile.name});
     fs.unlink(`${__dirname}/public/${myFile.name}`, (err) => {
       if(err){
@@ -50,9 +53,6 @@ app.post('/upload', (req, res) => {
         console.log(`${__dirname}/public/${myFile.name}` + ' was deleted');
       }
     });
-        // returing the response with file path and name
-        
-        //return res.send({name: myFile.name, path: `/${myFile.name}`});
     });
 })
 app.listen(4500, () => {

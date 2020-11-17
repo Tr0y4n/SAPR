@@ -1,4 +1,4 @@
-import React, {useState, useRef, useEffect} from 'react'
+import React, {useState, useRef} from 'react'
 import axios from 'axios'
 import Alert from 'react-bootstrap/Alert'
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
@@ -8,12 +8,14 @@ import HomePage from './HomePage/HomePage'
 import Konva from './Konva/Konva'
 import RodsTable from './RodsTable/RodsTable'
 import LoadsTable from './LoadsTable/LoadsTable'
+import Button from 'react-bootstrap/esm/Button'
+
 
 function App() {
-  const [dataRods, setDataRods] = useState([])
+  const [dataRods, setDataRods] = useState([]);
   const changeDataRods = (data) => {setDataRods(data)}
  
-  const [dataLoads, setDataLoads] = useState([])
+  const [dataLoads, setDataLoads] = useState([]);
   const changeDataLoads = (data) => {setDataLoads(data)}
 
   let errorSource = '';
@@ -39,9 +41,8 @@ function App() {
 
 let areSupportsOk = true;
 for (let j = 0; j < dataLoads.length; j++) {
-  if (!isNaN(dataLoads[j].Z) && dataLoads[j].n !== 1) {
+  if (dataLoads[j].Z === 1 && dataLoads[j].n !== 1) {
      if (dataLoads[j].n !== (dataRods.length + 1)) {
-    console.log("dataLoads[j].n = " + dataLoads[j].n);
     areSupportsOk = false;
     errorSource = "опор";
    }
@@ -61,7 +62,6 @@ for (let j = 0; j < dataLoads.length; j++) {
     const handleChange = (e) => {
         setProgess('0')
         const file = e.target.files[0]; // accesing file
-        console.log("Trash info: ", file);
        
         setFile(file); // storing file
         
@@ -79,47 +79,33 @@ for (let j = 0; j < dataLoads.length; j++) {
                 setProgess(progress);
             }
         }).then(res => {
-            console.log("What is it? ", res);
             getFile({ 
                      content: JSON.parse(res.data.state),
                      name: res.data.name
                    })
-                   
+            const prepared = JSON.parse(res.data.state);
+            setDataRods(prepared.RodsTable);
+            setDataLoads(prepared.LoadsTable);
         }).catch(err => console.log(err))
       } else {
         setIsFileOk(false);
-      }
-      }
+      }}
 
-        if (info) {
-            console.log("File info: ", info);
-        }
         console.log("KAIF ", info.content);
-        
-        const parsedData = info.content;
-                  if(parsedData){
-                    changeDataRods(parsedData.RodsTable[0]);}
-       
 
+//const handleDownload = async () => {
+  //let obj = {
+    //RodsTable: dataRods,
+    //LoadsTable:dataLoads
+  //}
+  //const download = require('downloadjs');
+  //download(JSON.stringify(obj), 'construction.kpr');
+//};
 
-        //useEffect(() => {
-          //if(parsedData){
-          //setDataRods(parsedData.RodsTable[0]);}
-        //}, parsedData.RodsTable[0]);
-
-        //if (parsedData) {
-        //console.log("parsedData = ", parsedData.RodsTable[0].i);
-        //setDataRods({i: 1, L: 200, A: 100, E: 1, S: 1, q: 100});
-        //console.log("New dataRods: ", dataRods);
-      //}
-      
-
-
-      
   return (
     <div>
-      <Router>
-      <Header />
+      <Router>                       
+      <Header dr={dataRods} dl={dataLoads} />
         <Switch>
 
           <Route exact path='/'>
@@ -129,7 +115,7 @@ for (let j = 0; j < dataLoads.length; j++) {
           <Route path='/preprocessor'>
           <div className="Preprocessor">
           <div className="tables margin">
-                <RodsTable data={dataRods} fileData={parsedData} setData={changeDataRods}/>
+                <RodsTable data={dataRods} setData={changeDataRods}/>
                 <LoadsTable data={dataLoads} setData={changeDataLoads}/>
               </div>
               {(areRodsOk && areLoadsOk && areSupportsOk)?
@@ -169,6 +155,8 @@ for (let j = 0; j < dataLoads.length; j++) {
                 ):(<div></div>)}
           </Route>
           
+
+
         </Switch>
       </Router>
     </div>

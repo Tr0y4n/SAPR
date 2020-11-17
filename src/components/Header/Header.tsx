@@ -1,26 +1,57 @@
 import React from 'react'
 import Navbar from 'react-bootstrap/Navbar'
-import Nav from 'react-bootstrap/Nav'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import './Header.css'
-import {useLocation} from 'react-router-dom'
+import Button from 'react-bootstrap/Button'
+import { Link, useLocation } from 'react-router-dom'
 
-export default function Header() {
+export default function Header(props: any) {
     let location = useLocation();
+
+    const handleDownload = async () => {
+        let obj = {
+          RodsTable: props.dr,
+          LoadsTable: props.dl
+        }
+        const download = require('downloadjs');
+        download(JSON.stringify(obj), 'construction.kpr');
+      };
+
     return (
         <>
-            <Navbar bg="dark" variant="dark" >
-                <Navbar.Brand href="https://sites.google.com/site/vladchekanin/discipliny/komputernaa-mehanika-5-semestr">САПР</Navbar.Brand>
-                <div className="links">
-                    <Nav.Link disabled={location.pathname === '/preprocessor'} className='linkColor' href="/preprocessor">Препроцессор</Nav.Link>
-                    <Nav.Link disabled={location.pathname === '/processor'} className='linkColor' href="/processor">Процессор</Nav.Link>
-                    <Nav.Link disabled={location.pathname === '/postprocessor'} className='linkColor' href="/postprocessor">Постпроцессор</Nav.Link>  
-                </div>
-                <div className="load">
-                <Nav.Link disabled={location.pathname === '/uploading'} className='linkColor' href="/uploading">Загрузить</Nav.Link>
-                <Nav.Link disabled={location.pathname === '/downloading'} className='linkColor' href="/downloading">Скачать</Nav.Link>
-                </div>
-            </Navbar>
+        <Navbar bg="dark" variant="dark" >
+            <Navbar.Brand href="https://sites.google.com/site/vladchekanin/discipliny/komputernaa-mehanika-5-semestr">САПР</Navbar.Brand>
+
+        <div className="links">
+        <Button disabled={location.pathname === '/preprocessor'} variant="outlined">
+            <Link className="link" to="/preprocessor">
+                Препроцессор
+            </Link>
+        </Button>
+        <Button disabled={location.pathname === '/processor'} variant="outlined">
+            <Link className="link" to="/processor">
+                Процессор
+            </Link>
+        </Button>
+        <Button disabled={location.pathname === '/postprocessor'} variant="outlined">
+            <Link className="link" to="/postprocessor">
+                Постпроцессор
+            </Link>
+        </Button>
+        </div>
+        <div className="load">
+        <Button disabled={location.pathname === '/uploading'} variant="outlined">
+            <Link className="link" to="/uploading">
+                Загрузить
+            </Link>
+        </Button>
+        <Button onClick={handleDownload} variant="outlined primary">
+            <Link className="link" to='/preprocessor'>
+                Скачать
+            </Link>
+        </Button>
+        </div>
+    </Navbar>
         </>
     )
 }

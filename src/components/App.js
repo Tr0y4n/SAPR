@@ -7,11 +7,13 @@ import Header from './Header/Header'
 import HomePage from './HomePage/HomePage'
 import Konva from './Konva/Konva'
 import RodsTable from './RodsTable/RodsTable'
-import LoadsTable from './LoadsTable/LoadsTable'
-import Button from 'react-bootstrap/esm/Button'
+import LoadsTable from './LoadsTable/LoadsTable';
+import Processing from './Processor/Processing'
+import Button from 'react-bootstrap/Button'
 
 
 function App() {
+
   const [dataRods, setDataRods] = useState([]);
   const changeDataRods = (data) => {setDataRods(data)}
  
@@ -91,16 +93,13 @@ for (let j = 0; j < dataLoads.length; j++) {
         setIsFileOk(false);
       }}
 
-        console.log("KAIF ", info.content);
+      console.log("KAIF ", info.content);
 
-//const handleDownload = async () => {
-  //let obj = {
-    //RodsTable: dataRods,
-    //LoadsTable:dataLoads
-  //}
-  //const download = require('downloadjs');
-  //download(JSON.stringify(obj), 'construction.kpr');
-//};
+      const handlePro = () => {
+        Processing(dataRods, dataLoads);
+        console.log("dataRods: ", dataRods);
+        console.log("dataLoads: ", dataLoads);
+      }
 
   return (
     <div>
@@ -130,6 +129,9 @@ for (let j = 0; j < dataLoads.length; j++) {
 
           <Route path='/processor'>
             <h1>Processor</h1>
+            <Button onClick={handlePro} variant="outlined primary">
+            Рассчитать
+        </Button>
           </Route>
 
           <Route path='/postprocessor'>

@@ -128,10 +128,12 @@ for (let j = 0; j < dataLoads.length; j++) {
           </Route>
 
           <Route path='/processor'>
+            <div className="middle">
             <h1>Processor</h1>
-            <Button onClick={handlePro} variant="outlined primary">
+            <Button onClick={handlePro} variant="primary">
             Рассчитать
         </Button>
+        </div>
           </Route>
 
           <Route path='/postprocessor'>

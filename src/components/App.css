@@ -65,5 +65,8 @@ img{
   display: flex;
   flex-direction: column;
   align-items: center;
+}
 
+.bm {
+  margin-top: 10px;
 }

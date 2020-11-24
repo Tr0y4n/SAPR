@@ -10,9 +10,12 @@ import RodsTable from './RodsTable/RodsTable'
 import LoadsTable from './LoadsTable/LoadsTable';
 import Processing from './Processor/Processing'
 import Button from 'react-bootstrap/Button'
+import Post from './Post/Post'
 
 
 function App() {
+  const [solution, setSolution] = useState({});
+  const [proDone, setProDone] = useState(false);
 
   const [dataRods, setDataRods] = useState([]);
   const changeDataRods = (data) => {setDataRods(data)}
@@ -64,9 +67,7 @@ for (let j = 0; j < dataLoads.length; j++) {
     const handleChange = (e) => {
         setProgess('0')
         const file = e.target.files[0]; // accesing file
-       
         setFile(file); // storing file
-        
     }
 
     const uploadFile = () => {
@@ -93,12 +94,9 @@ for (let j = 0; j < dataLoads.length; j++) {
         setIsFileOk(false);
       }}
 
-      console.log("KAIF ", info.content);
-
       const handlePro = () => {
-        Processing(dataRods, dataLoads);
-        console.log("dataRods: ", dataRods);
-        console.log("dataLoads: ", dataLoads);
+        setSolution(Processing(dataRods, dataLoads));
+        setProDone(true);
       }
 
   return (
@@ -129,15 +127,19 @@ for (let j = 0; j < dataLoads.length; j++) {
 
           <Route path='/processor'>
             <div className="middle">
-            <h1>Processor</h1>
-            <Button onClick={handlePro} variant="primary">
-            Рассчитать
+            <Button onClick={handlePro} variant="primary" className="bm">
+            Выполнить расчеты
         </Button>
         </div>
           </Route>
 
           <Route path='/postprocessor'>
-            <h1>Postprocessor</h1>
+            <div>
+              {proDone ? 
+              <Post dataRods={dataRods} dataLoads={dataLoads} solution={solution} />
+               :<h1>Сначала выполните расчеты в процессоре</h1>
+              }
+            </div>
           </Route>
 
           <Route path='/uploading'>

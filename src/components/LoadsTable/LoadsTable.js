@@ -43,6 +43,13 @@ export default function LoadsTable(props) {
             type: 'numeric',
             filtering: false,
             align: 'center', 
+            validate: (rowData) => { 
+              if (isNaN(rowData.F)) {
+                return("Поле не должно быть пустым")
+              } else {
+                return true
+              }
+            }
             },
           ]}
 

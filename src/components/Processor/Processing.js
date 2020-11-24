@@ -1,21 +1,18 @@
-import { range, isEqual, sortBy, Function } from 'lodash';
+import { range } from 'lodash';
 import JordanGauss from './JordanGauss';
 
 
 const Processing = (dr, dl)  => {
     const rodsData = dr;
     const loadsData = dl;
-    //console.log("rodsData: ", rodsData);
-    //console.log("loadsData: ", loadsData);
     let left = undefined;
-
     if (!!loadsData){
     for (let i = 0; i < loadsData.length; i++) {
         if (loadsData[i].n === 1 && loadsData[i].Z === 1) {
             left = true;
         }
     }}
-    // const checkl = loadsData.forEach((item) => {(item.n === 1 && item.Z === 1) ? left = true : null})
+
     let right = undefined;
     if (!!loadsData){
     for (let i = 0; i < loadsData.length; i++) {
@@ -23,12 +20,12 @@ const Processing = (dr, dl)  => {
             right = true;
         }
     }}
-    //const checkr = loadsData.forEach((item) => {(item.n !== 1 && item.Z === 1) ? left = true : null})
-    console.log("left: ", left);
-    console.log("right: ", right);
+
+    //console.log("left: ", left);
+    //console.log("right: ", right);
 
         const rods = rodsData.map((val) => [val.E, val.A, val.L]);
-        console.log(`rods: ${rods}`);
+        //console.log(`rods: ${rods}`);
     
         const nodesLoads = [];
         for (let i = 0; i < rodsData.length + 1; i++) {
@@ -38,10 +35,10 @@ const Processing = (dr, dl)  => {
                 .reduce((prev, curr) => prev + curr, 0);
             nodesLoads.push(loadsSum);
         }
-        console.log(`nodesLoads: ${nodesLoads}`);
+        //console.log(`nodesLoads: ${nodesLoads}`);
     
         const rodsLoads = rodsData.map((val) => val.q);
-        console.log(`rodsLoads: ${rodsLoads}`);
+        //console.log(`rodsLoads: ${rodsLoads}`);
     
         const matrixA = [];
         for (let i = 0; i < rods.length + 1; i++) {
@@ -66,8 +63,8 @@ const Processing = (dr, dl)  => {
             tempMinor[1][0] *= -1;
             minors.push(tempMinor);
         });
-        console.log('minors:');
-        minors.forEach((val) => console.log(val));
+        //console.log('minors:');
+        //minors.forEach((val) => console.log(val));
     
         minors.forEach((val, ind) => {
             for (let i of range(ind, ind + 2)) {
@@ -84,7 +81,6 @@ const Processing = (dr, dl)  => {
                 }
             }
         });
-        //console.log(`matrixA(without support): ${matrixA}`);
     
         if (left) {
             for (let i = 0; i < matrixA.length; i++) {
@@ -107,8 +103,8 @@ const Processing = (dr, dl)  => {
                 }
             }
         }
-        console.log(`matrixA: `);
-        matrixA.forEach((val) => console.log(val));
+        //console.log(`matrixA: `);
+        //matrixA.forEach((val) => console.log(val));
     
         const vectorB = [];
     
@@ -129,13 +125,13 @@ const Processing = (dr, dl)  => {
                 );
             }
         }
-        console.log(`b: ${vectorB}`);
+        //console.log(`b: ${vectorB}`);
     
         const deltas = JordanGauss(matrixA, vectorB).map((val) =>
             Number(val.toFixed(14))
         );
     
-        console.log(`DELTAS: ${deltas}`);
+        console.log(`Дельты: ${deltas}`);
     
         const U = [];
         rods.forEach((val, ind) => {
@@ -175,17 +171,17 @@ const Processing = (dr, dl)  => {
             S: S,
         };
     
-        console.log('Решение: ');
-        rods.forEach((val, ind) => {
+        //console.log('Решение: ');
+        //rods.forEach((val, ind) => {
             
-            console.log(`N${ind + 1}(0) = ${solution.N[ind](0)}`);
-            console.log(`U${ind + 1}(0) = ${solution.U[ind](0)}`);
-            console.log(`S${ind + 1}(0) = ${solution.S[ind](0)}`);
+            //console.log(`N${ind + 1}(0) = ${solution.N[ind](0)}`);
+            //console.log(`U${ind + 1}(0) = ${solution.U[ind](0)}`);
+            //console.log(`S${ind + 1}(0) = ${solution.S[ind](0)}`);
             
-            console.log(`N${ind + 1}(${val[2]}) = ${solution.N[ind](val[2])}`);
-            console.log(`U${ind + 1}(${val[2]}) = ${solution.U[ind](val[2])}`);
-            console.log(`S${ind + 1}(${val[2]}) = ${solution.S[ind](val[2])}`);
-        });
+            //console.log(`N${ind + 1}(${val[2]}) = ${solution.N[ind](val[2])}`);
+            //console.log(`U${ind + 1}(${val[2]}) = ${solution.U[ind](val[2])}`);
+            //console.log(`S${ind + 1}(${val[2]}) = ${solution.S[ind](val[2])}`);
+        //});
         return solution;
     };
     export default Processing;

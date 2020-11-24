@@ -90,6 +90,13 @@ export default function RodsTable(props) {
               type: 'numeric',
               filtering: false,
               align: 'center',
+              validate: (rowData) => { 
+                if (isNaN(rowData.q)) {
+                  return("Поле не должно быть пустым")
+                } else {
+                  return true
+                }
+              }
             },
           ]}
 

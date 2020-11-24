@@ -1,0 +1,9 @@
+.eps {
+    display: flex;
+    flex-direction: row;
+}
+
+.marg {
+    margin-left: 50px;
+    margin-top: 50px;
+}
